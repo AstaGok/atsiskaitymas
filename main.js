@@ -1,27 +1,19 @@
-var form = document.forms["registracija"];
-var vardas = form["vardas"].value;
-var pavarde = form["pavarde"].value;
-var mokykla = form["mokykla"].value;
-var miestas = form["miestas"].value;
-var sritis = document.getElementsByName("sritis");
-var optionValue = sritis.value;
-
 document.forms[0].addEventListener("submit", function(e){
     e.preventDefault();
-    localStorage.setItem("vardas", vardas.value);
-    localStorage.setItem("pavarde", pavarde.value);
-    localStorage.setItem("mokykla", mokykla.value);
-    localStorage.setItem("miestas", miestas.value);
-    if (optionValue ==0) {
-        localStorage.setItem("Front-end", option.value); 
-       } else if (optionValue ==1) {
-        localStorage.setItem("Back-end", option.value);
-       }
+    var myFormData = [];
+    var value1 = document.getElementById("vardas").value; 
+    var value2 = document.getElementById("pavarde").value; 
+    var value3 = document.getElementById("mokykla").value; 
+    var value4 = document.getElementById("miestas").value; 
+    var value5 = document.getElementById("sritis").value;
+    myFormData.push(value1,value2,value3,value4,value5);
+    localStorage.setItem("forma", myFormData);
+console.log(myFormData);
+
   });
 
-
   function printText(){
-    var printForm = document.getElementById('regist').value;
+    var printForm = localStorage.getItem("forma");
     var node=document.createElement("LI");
     var textnode=document.createTextNode(printForm);
     node.appendChild(textnode);
